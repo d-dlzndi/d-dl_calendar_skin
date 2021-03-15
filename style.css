@@ -1798,12 +1798,12 @@ body.loaded .content-side {
     color: var(--point);
 }
 
-.main-article-content a:not(.btn-toggle-moreless):hover {
+.main-article-content a:not(.btn-toggle-moreless):not(.link_ccl):hover {
     font-weight: bold;
     text-decoration: underline;
 }
 
-.main-article-content a[target="_blank"]::after {
+.main-article-content a[target="_blank"]:not([data-source-url]):not(.link_ccl)::after {
     content: "\f35d";
     font-size: 4pt;
     opacity: .5;
@@ -2012,6 +2012,27 @@ body.loaded .content-side {
     background: transparent;
     border: 3px solid var(--point);
     color: var(--point);
+}
+
+.main-article-content hr[data-ke-style], 
+.main-article-content #tt-body-page hr[data-ke-style] {
+    margin: 30px auto;
+}
+
+.main-article-content hr[data-ke-style='style1'], 
+.main-article-content #tt-body-page hr[data-ke-style='style1'],
+.main-article-content hr[data-ke-style='style2'], 
+.main-article-content #tt-body-page hr[data-ke-style='style2'],
+.main-article-content hr[data-ke-style='style5'], 
+.main-article-content #tt-body-page hr[data-ke-style='style5'],
+.main-article-content hr[data-ke-style='style6'], 
+.main-article-content #tt-body-page hr[data-ke-style='style6'] {
+    height: 5px;
+}
+
+.main-article-content hr[data-ke-style='style3'], 
+.main-article-content #tt-body-page hr[data-ke-style='style3'] {
+    height: 10px;
 }
 
 .main-article-content button:not(.container_postbtn *):hover {

@@ -93,6 +93,13 @@ window.onload = function () {
             $(this).html('<i class="fas fa-lock"></i>');
         }
     });
+    $('a.btn-toggle-moreless').click(function () {
+        if (!$(this).closest('div[data-ke-type="moreLess"]').hasClass('open')) {
+            $("html, body").stop().animate({
+                scrollTop: $(this).offset().top - 50
+            }, 500);
+        }
+    });
 
     $('body').addClass('loaded');
 };

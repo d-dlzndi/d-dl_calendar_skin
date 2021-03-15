@@ -49,7 +49,7 @@
         <!-- 최근 트랙백에 표현될 글자수 -->
         <lengthOfLink>30</lengthOfLink>
         <!-- 링크에 표현될 글자수 -->
-        <showListOnArchive>1</showListOnArchive>
+        <showListOnArchive>2</showListOnArchive>
         <!-- 홈에서 목록 표현(0:내용만, 1:목록만, 2: 내용+목록) -->
         <showListOnCategory>2</showListOnCategory>
         <!-- 기본 글 목록 표현(0:내용만, 1:목록만, 2: 내용+목록) -->
