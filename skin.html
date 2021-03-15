@@ -1,0 +1,1207 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ko">
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]" />
+    <meta name="author" content="[##_blogger_##]">
+    <meta name="description" content="[##_title_##]">
+    <meta name="keywords" content="[##_meta_http_equiv_keywords_##]">
+    <meta name="viewport" content="width=device-width">
+
+    <title>[##_page_title_##] - [##_title_##]</title>
+    <script type="text/javascript">
+        var pageTitle = "[##_page_title_##]";
+        var blogTitle = '[##_title_##]';
+        if (pageTitle == blogTitle) {
+            document.title = blogTitle;
+        } else if (pageTitle.substr(0, blogTitle.length) == blogTitle) {
+            document.title = pageTitle;
+        }
+
+        var agent = navigator.userAgent.toLowerCase();
+        if ((navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1)) {
+            prompt("본 페이지는 인터넷 익스플로러를 지원하지 않습니다. 웹 브라우저를 변경하신 뒤 다시 접근해주세요. 링크는 아래와 같습니다.", window.location.href);
+            history.go(-1);
+        }
+
+    </script>
+
+    <style>
+        :root {
+            --base: [##_var_base-color_##];
+            --color: [##_var_color-color_##];
+            --point: [##_var_point-color_##];
+
+            --thumb-count: [##_var_thumb-count_##];
+            /*기본 썸네일 시 가로에 들어갈 개수*/
+
+            --list-border: 1px solid var(--color);
+            --comment-border: 1px dashed var(--color);
+            --background: [##_var_background_##]<s_not_var_background>[##_var_background-color_##] url('[##_var_background-image_##]')</s_not_var_background>;
+            --background-blend-mode: [##_var_background-blend-mode_##];
+            --background-opacity: [##_var_background-opacity_##];
+
+            --side-width: [##_var_side-width_##];
+            --margin-width: [##_var_margin-width_##];
+            /* 사이드바 본문 사이 */
+            --content-width: [##_var_content-width_##];
+            --padding-width: [##_var_padding-width_##];
+            /* 상자 사이 */
+
+            --thumb-blend-mode: [##_var_thumb-cover-blend-mode_##];
+        }
+
+        /* 관리자 댓글 작성 시 앞에 아이콘을 넣어주는 코드. */
+        /*
+        .guest_admin > .item-comment .comment-content .meta .title a::before,
+        .rp_admin > .item-comment .comment-content .meta .title a::before {
+            content: "[##_var_blog-mainicon_##] ";
+            color: var(--point);
+        }
+        */
+
+    </style>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
+</head>
+
+<body class="">
+    <!--open-->
+    <s_t3>
+        <div id="bg"></div>
+        <div id="blank" class="no-drag" onclick="sideToggle()"></div>
+        <button id="sideBtn" onclick="sideToggle()" class="btn no-drag">
+            <i class="fas fa-bars"></i>
+        </button>
+        <s_if_var_scrollbtn-use>
+            <div id="navi" class="no-drag">
+                <button class="top-btn" onclick="ScrollTop()">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+                <button class="bottom-btn" onclick="ScrollBottom()">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </s_if_var_scrollbtn-use>
+        <div id="all" class="<s_not_var_content-padding-use>width100</s_not_var_content-padding-use> <s_if_var_right-sidebar-use>right-sidebar</s_if_var_right-sidebar-use>">
+            <nav class="menu-side <s_if_var_menu-black-theme>black</s_if_var_menu-black-theme> no-drag">
+                <s_sidebar>
+                    <s_sidebar_element>
+                        <!-- 블로그 프로필 -->
+                        <div class="profile <s_if_var_profile-border>border</s_if_var_profile-border> <s_if_var_profile-white>white</s_if_var_profile-white>">
+                            <div class="blog-img-box">
+                                <div class="blog-img bg-cover" style="background-image: url('');">
+                                    <img src="[##_var_profile-image_##]<s_not_var_profile-image>[##_image_##]</s_not_var_profile-image>" alt="blog profile img" />
+                                    <div class="action">
+                                        <div class="center">
+                                            <ul class="metabtn">
+                                                <li>
+                                                    <a href="[##_blog_link_##]manage" d-dl-tooltip="환경설정">
+                                                        <i class="fas fa-wrench"></i>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="[##_blog_link_##]manage/post" d-dl-tooltip="글쓰기">
+                                                        <i class="fas fa-feather-alt"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h1 class="blog-name">
+                                <a href="[##_blog_link_##]">[##_blogger_##]</a>
+                            </h1>
+                            <div class="blog-sub black-box">
+                                <p class="descrip txt-side">[##_desc_##]</p>
+                            </div>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 블로그 메뉴 -->
+                        <div class="blog-menu title">
+                            [##_blog_menu_##]
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 검색 -->
+                        <div class="search">
+                            <div class="searchbox">
+                                <s_search>
+                                    <input type="text" name="[##_search_name_##]" value="[##_search_text_##]" placeholder="SEARCH" maxlength="10" onkeypress="if (event.keyCode == 13) { [##_search_onclick_submit_##] }" class="text" required />
+                                    <button onclick="[##_search_onclick_submit_##]" class="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </s_search>
+                            </div>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 카테고리 -->
+                        <div class="category">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-bars"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        카테고리
+                                    </span>
+                                </div>
+                            </div>
+                            [##_category_list_##]
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 공지 -->
+                        <s_rct_notice>
+                            <div class="notice">
+                                <div class="all-header">
+                                    <div class="all-header-icon">
+                                        <div class="center">
+                                            <i class="fas fa-microphone"></i>
+                                        </div>
+                                    </div>
+                                    <div class="all-header-text">
+                                        <span class="title">
+                                            공지사항
+                                        </span>
+                                    </div>
+                                </div>
+                                <ul class="rct-notice">
+                                    <s_rct_notice_rep>
+                                        <li>
+                                            <a href="[##_notice_rep_link_##]">[##_notice_rep_title_##]</a>
+                                        </li>
+                                    </s_rct_notice_rep>
+                                </ul>
+                            </div>
+                        </s_rct_notice>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 최근 글 -->
+                        <div class="recentArticle">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-quote-left"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        최근 글
+                                    </span>
+                                </div>
+                            </div>
+                            <ul class="rctps">
+                                <s_rctps_rep>
+                                    <li>
+                                        <a href="[##_rctps_rep_link_##]">
+                                            [##_rctps_rep_title_##]
+                                            <span class="small">[##_rctps_rep_rp_cnt_##]</span>
+                                        </a>
+                                    </li>
+                                </s_rctps_rep>
+                            </ul>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 인기 글 -->
+                        <div class="popularArticle">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-exclamation"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        인기 글
+                                    </span>
+                                </div>
+                            </div>
+                            <ul class="rctps-popular">
+                                <s_rctps_popular_rep>
+                                    <li>
+                                        <a href="[##_rctps_rep_link_##]">
+                                            [##_rctps_rep_title_##]
+                                            <span class="small">[##_rctps_rep_rp_cnt_##]</span>
+                                        </a>
+                                    </li>
+                                </s_rctps_popular_rep>
+                            </ul>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 최근 댓글 -->
+                        <div class="recentComment">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-comment"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        최근 댓글
+                                    </span>
+                                </div>
+                            </div>
+                            <ul class="rctrp">
+                                <s_rctrp_rep>
+                                    <li>
+                                        <a href="[##_rctrp_rep_link_##]">[##_rctrp_rep_desc_##]</a>
+                                        <span class="small">-[##_rctrp_rep_name_##]</span>
+                                    </li>
+                                </s_rctrp_rep>
+                            </ul>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 태그 -->
+                        <div class="randomtag">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-hashtag"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        태그
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pad-box">
+                                <div class="tag-list">
+                                    <s_random_tags>
+                                        <a href="[##_tag_link_##]" class="[##_tag_class_##]">
+                                            [##_tag_name_##]
+                                        </a>
+                                    </s_random_tags>
+                                </div>
+                            </div>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 방문자 수 카운터 -->
+                        <div class="counter">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-calculator"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        카운터
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="pad-box" style="line-height: 1.4">
+                                <p class="big">
+                                    [##_count_total_##]
+                                </p>
+                                <p>
+                                    Today - [##_count_today_##]
+                                </p>
+                                <p>
+                                    Yesterday - [##_count_yesterday_##]
+                                </p>
+                            </div>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 달력 -->
+                        <div class="calender">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        달력
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="white-box">
+                                [##_calendar_##]
+                            </div>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 글 보관함(아카이브) -->
+                        <div class="archive">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-archive"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        글 보관함
+                                    </span>
+                                </div>
+                            </div>
+                            <ul>
+                                <s_archive_rep>
+                                    <li>
+                                        <a href="[##_archive_rep_link_##]">[##_archive_rep_date_##]</a>
+                                        <span class="small">([##_archive_rep_count_##])</span>
+                                    </li>
+                                </s_archive_rep>
+                            </ul>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- 트위터 위젯 -->
+                        <div class="twitter">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fab fa-twitter"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        트위터
+                                    </span>
+                                </div>
+                            </div>
+                            <a class="twitter-timeline" href="https://twitter.com/[##_var_twitter-w-id_##]<s_not_var_twitter-w-id>[##_var_twitter-id_##]</s_not_var_twitter-w-id>" data-widget-id="699311689565536256" data-theme="black" data-link-color="#cc0000" width="100%" height="350" data-chrome="noheader nofooter noborders noscrollbar transparent" lang="ko">
+                                @[##_var_twitter-w-id_##]<s_not_var_twitter-w-id>[##_var_twitter-id_##]</s_not_var_twitter-w-id> 님의 트윗
+                            </a>
+                            <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
+                        <!-- SNS 버튼 -->
+                        <div class="btnset">
+                            <ul class="metabtn">
+                                <s_if_var_instagram-id>
+                                    <li id="instagram-icon">
+                                        <a href="https://www.instagram.com/[##_var_instagram-id_##]" target="_blank" d-dl-tooltip="인스타그램">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                </s_if_var_instagram-id>
+                                <s_if_var_twitter-id>
+                                    <li id="twitter-icon">
+                                        <a href="https://twitter.com/[##_var_twitter-id_##]" target="_blank" d-dl-tooltip="트위터">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                </s_if_var_twitter-id>
+                                <s_if_var_facebook-id>
+                                    <li id="facebook-icon">
+                                        <a href="https://www.facebook.com/[##_var_facebook-id_##]" target="_blank" d-dl-tooltip="페이스북">
+                                            <i class="fab fa-facebook-square"></i>
+                                        </a>
+                                    </li>
+                                </s_if_var_facebook-id>
+                                <s_if_var_github-id>
+                                    <li id="github-icon">
+                                        <a href="https://github.com/[##_var_github-id_##]" target="_blank" d-dl-tooltip="깃허브">
+                                            <i class="fab fa-github-square"></i>
+                                        </a>
+                                    </li>
+                                </s_if_var_github-id>
+                            </ul>
+                        </div>
+                    </s_sidebar_element>
+                </s_sidebar>
+            </nav>
+            <!-- 본문 -->
+            <section class="content-side <s_if_var_thumb-scale-active> thumb-scale-active </s_if_var_thumb-scale-active> <s_if_var_content-black-theme> black </s_if_var_content-black-theme>">
+                <!-- 커버 -->
+                <s_cover_group>
+                    <s_cover_rep>
+                        <s_cover name='thumbnail'>
+                            <div class="list">
+                                <header class="all-header">
+                                    <div class="all-header-icon">
+                                        <div class="center">
+                                            <span id="main-content-list-type">
+                                                <i class="fas fa-quote-left"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="all-header-text">
+                                        <h2 class="title">
+                                            <span class="main-content-list-title">
+                                                <a href="<s_cover_url>[##_cover_url_##]</s_cover_url>">
+                                                    [##_cover_title_##]
+                                                </a>
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="list-style default">
+                                    <!-- class : default, long, list -->
+                                    <s_cover_item>
+                                        <div class="thumb-box">
+                                            <div class="thumb bg-cover" style="<s_cover_item_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x720/?fname=[##_cover_item_thumbnail_##]') </s_cover_item_thumbnail>">
+                                                <div class="thumb-content">
+                                                    <s_cover_item_not_article_info>
+                                                        <div class="text center">
+                                                            <a class="tt" href="[##_cover_item_url_##]">
+                                                                [##_cover_item_title_##]
+                                                            </a>
+                                                        </div>
+                                                    </s_cover_item_not_article_info>
+                                                    <s_cover_item_article_info>
+                                                        <div class="text center">
+                                                            <a class="listct small" href="[##_cover_item_category_url_##]">
+                                                                [##_cover_item_category_##]
+                                                            </a>
+                                                            <br>
+                                                            <a class="tt" href="[##_cover_item_url_##]">
+                                                                [##_cover_item_title_##]
+                                                            </a>
+                                                        </div>
+                                                        <div class="point-box">
+                                                            <div class="point-date title dot-edit">
+                                                                [##_cover_item_simple_date_##]
+                                                            </div>
+                                                        </div>
+                                                    </s_cover_item_article_info>
+                                                </div>
+                                                <div class="thumb-lock" lsummary="[##_cover_item_summary_##]">
+                                                    <span class="center">
+                                                        <i class="fas fa-lock"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </s_cover_item>
+                                </div>
+                            </div>
+                        </s_cover>
+                        <s_cover name='long-thumbnail'>
+                            <div class="list">
+                                <header class="all-header">
+                                    <div class="all-header-icon">
+                                        <div class="center">
+                                            <span id="main-content-list-type">
+                                                <i class="fas fa-quote-left"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="all-header-text">
+                                        <h2 class="title">
+                                            <span class="main-content-list-title">
+                                                <a href="<s_cover_url>[##_cover_url_##]</s_cover_url>">
+                                                    [##_cover_title_##]
+                                                </a>
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="list-style long">
+                                    <!-- class : default, long, list -->
+                                    <s_cover_item>
+                                        <div class="thumb-box">
+                                            <div class="thumb bg-cover" style="<s_cover_item_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x720/?fname=[##_cover_item_thumbnail_##]') </s_cover_item_thumbnail>">
+                                                <div class="thumb-content">
+                                                    <s_cover_item_not_article_info>
+                                                        <div class="text center">
+                                                            <a class="tt" href="[##_cover_item_url_##]">
+                                                                [##_cover_item_title_##]
+                                                            </a>
+                                                        </div>
+                                                    </s_cover_item_not_article_info>
+                                                    <s_cover_item_article_info>
+                                                        <div class="text center">
+                                                            <a class="listct small" href="[##_cover_item_category_url_##]">
+                                                                [##_cover_item_category_##]
+                                                            </a>
+                                                            <br>
+                                                            <a class="tt" href="[##_cover_item_url_##]">
+                                                                [##_cover_item_title_##]
+                                                            </a>
+                                                        </div>
+                                                        <div class="point-box">
+                                                            <div class="point-date title dot-edit">
+                                                                [##_cover_item_simple_date_##]
+                                                            </div>
+                                                        </div>
+                                                    </s_cover_item_article_info>
+                                                </div>
+                                                <div class="thumb-lock" lsummary="[##_cover_item_summary_##]">
+                                                    <span class="center">
+                                                        <i class="fas fa-lock"></i>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </s_cover_item>
+                                </div>
+                            </div>
+                        </s_cover>
+                        <s_cover name='list-type'>
+                            <div class="list">
+                                <header class="all-header">
+                                    <div class="all-header-icon">
+                                        <div class="center">
+                                            <span id="main-content-list-type">
+                                                [##_var_blog-mainicon_##]
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="all-header-text">
+                                        <h2 class="title">
+                                            <span class="main-content-list-title">
+                                                <a href="<s_cover_url>[##_cover_url_##]</s_cover_url>">
+                                                    [##_cover_title_##]
+                                                </a>
+                                            </span>
+                                        </h2>
+                                    </div>
+                                </header>
+                                <div class="list-style list">
+                                    <!-- class : default, long, list -->
+                                    <s_cover_item>
+                                        <s_cover_item_article_info>
+                                            <li>
+                                                <div class="icon">
+                                                    <span class="center list-lock" lsummary="[##_cover_item_summary_##]">
+                                                        <i class="fas fa-check"></i>
+                                                        <!--<i class="fas fa-lock"></i>-->
+                                                    </span>
+                                                </div>
+                                                <div class="text">
+                                                    <a class="title" href="[##_cover_item_url_##]">
+                                                        [##_cover_item_title_##]
+                                                    </a>
+                                                </div>
+                                                <div class="date">
+                                                    <span class="center">
+                                                        [##_cover_item_simple_date_##]
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </s_cover_item_article_info>
+                                    </s_cover_item>
+                                </div>
+                            </div>
+                        </s_cover>
+                        <s_cover name='write-type'>
+                            <s_cover_item>
+                                <div class="list">
+                                    <header class="all-header">
+                                        <div class="all-header-icon">
+                                            <div class="center">
+                                                <span id="main-content-list-type">
+                                                    <i class="fas fa-exclamation"></i>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="all-header-text">
+                                            <h2 class="title">
+                                                <span class="main-content-list-title">
+                                                    <a href="[##_cover_item_url_##]">
+                                                        [##_cover_item_title_##]
+                                                    </a>
+                                                </span>
+                                            </h2>
+                                        </div>
+                                    </header>
+                                    <div class="cover-write-content white-box gra-box">
+                                        <s_cover_item_thumbnail>
+                                            <div class="img-side bg-cover" style="background-image: url('//i1.daumcdn.net/thumb/C400x400/?fname=[##_cover_item_thumbnail_##]')"></div>
+                                        </s_cover_item_thumbnail>
+                                        <div class="txt-side main-article-content">[##_cover_item_summary_##]</div>
+                                    </div>
+                                </div>
+                            </s_cover_item>
+                        </s_cover>
+                    </s_cover_rep>
+                </s_cover_group>
+                <s_list>
+                    [##_revenue_list_upper_##]
+                    <div class="list main">
+                        <header class="all-header">
+                            <div class="all-header-icon bg-cover" style="<s_list_image> background-image: url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_list_image_##]'); </s_list_image>">
+                                <div class="center">
+                                    <span id="main-content-list-type"></span>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <h2 class="title">
+                                    <span class="main-content-list-title">[##_list_conform_##]</span>
+                                    <span class="small">([##_list_count_##])</span>
+                                </h2>
+                            </div>
+                            <script>
+                                var linkHref = $(location).attr('href');
+                                var listTarget = $("#main-content-list-type");
+                                var listTxt = '[##_var_blog-mainicon_##]';
+                                if (linkHref.indexOf("/tag") != -1) {
+                                    listTxt = '<i class="fas fa-hashtag"></i>';
+                                } else if (linkHref.indexOf("/search") != -1) {
+                                    listTxt = '<i class="fas fa-search"></i>';
+                                } else if (linkHref.indexOf("/category/") != -1 &&
+                                    linkHref.indexOf("/category/?") == -1) {
+                                    listTxt = '<i class="fas fa-bars"></i>';
+                                } else if (linkHref.indexOf("/category") != -1) {
+                                    listTxt = "[##_var_blog-subicon_##]";
+                                } else if (linkHref.indexOf("/archive") != -1) {
+                                    listTxt = '<i class="fas fa-archive"></i>';
+                                } else {
+                                    $('.list.main .main-content-list-title').html('[##_title_##]');
+                                }
+                                if (listTxt != null) listTarget.html(listTxt);
+
+                            </script>
+                        </header>
+                        <div class="description black-box" style="display: none;">
+                            <p class="txt-side">[##_list_description_##]</p>
+                        </div>
+                        <s_list_empty>
+                            <p class="no-article white-box gra-box">
+                                <span>이 목록엔 글이 아직 없습니다.</span>
+                            </p>
+                        </s_list_empty>
+                        <div class="list-style [##_list_style_##]">
+                            <!-- class : default, long, list -->
+                            <s_list_rep>
+                                <div class="thumb-box">
+                                    <div class="thumb bg-cover" style="<s_list_rep_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x720/?fname=[##_list_rep_thumbnail_##]') </s_list_rep_thumbnail>">
+                                        <div class="thumb-content">
+                                            <div class="text center">
+                                                <a class="listct small" href="[##_list_rep_category_link_##]">
+                                                    [##_list_rep_category_##]
+                                                </a>
+                                                <br>
+                                                <a class="tt" href="[##_list_rep_link_##]">
+                                                    [##_list_rep_title_##]
+                                                </a>
+                                                <br>
+                                                <span class="small">
+                                                    <i class="fas fa-comment"></i>
+                                                    <span class="comment-count">[##_list_rep_rp_cnt_##]</span>
+                                                </span>
+                                            </div>
+                                            <div class="point-box">
+                                                <div class="point-date title">
+                                                    [##_list_rep_date_year_##]<br>
+                                                    [##_list_rep_date_month_##][##_list_rep_date_day_##]
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="thumb-lock" lsummary="[##_list_rep_summary_##]">
+                                            <span class="center">
+                                                <i class="fas fa-lock"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 목록형 -->
+                                <li>
+                                    <div class="icon">
+                                        <span class="center list-lock" lsummary="[##_list_rep_summary_##]">
+                                            <i class="fas fa-check"></i>
+                                            <!--<i class="fas fa-lock"></i>-->
+                                        </span>
+                                    </div>
+                                    <div class="text">
+                                        <a class="title" href="[##_list_rep_link_##]">
+                                            [##_list_rep_title_##]
+                                            <span class="small">[##_list_rep_rp_cnt_##]</span>
+                                        </a>
+                                    </div>
+                                    <div class="date">
+                                        <span class="center">
+                                            [##_list_rep_regdate_##]
+                                        </span>
+                                    </div>
+                                </li>
+                            </s_list_rep>
+                        </div>
+                        <!--list style end-->
+                    </div>
+                    <!--list end-->
+                    [##_revenue_list_lower_##]
+                </s_list>
+                <s_article_rep>
+                    <article class="article">
+                        <header class="all-header">
+                            <div class="all-header-icon bg-cover" style="<s_article_rep_thumbnail> background-image: url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_article_rep_thumbnail_url_##]'); </s_article_rep_thumbnail>" d-dl-tooltip="[##_article_rep_date_##]">
+                                <div class="center title">
+                                    [##_article_rep_date_month_##]<br>
+                                    [##_article_rep_date_day_##]
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <span class="sub">
+                                    <a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
+                                </span>
+                                <h2 class="title">
+                                    <a href="[##_article_rep_link_##]">[##_article_rep_title_##]</a>
+                                </h2>
+                                <s_ad_div>
+                                    <span class="sub" style="text-align: right;">
+                                        <a href="[##_s_ad_m_link_##]">수정</a> ·
+                                        <a href="#" onclick="[##_s_ad_m_onclick_##]">수정(창으로)</a> ·
+                                        ([##_s_ad_s1_label_##])→<a href="#" onclick="[##_s_ad_s2_onclick_##]">[##_s_ad_s2_label_##]</a> ·
+                                        <a href="#" onclick="[##_s_ad_d_onclick_##]">삭제</a>
+                                    </span>
+                                </s_ad_div>
+                            </div>
+                        </header>
+                        <div class="main-article-content gra-box">
+                            [##_article_rep_desc_##]
+                        </div>
+                        <s_if_var_related-use>
+                            <s_article_related>
+                                <h4 class="related-title">이 카테고리의 다른 글</h4>
+                                <div class="before-after related">
+                                    <s_article_related_rep>
+                                        <a href="[##_article_related_rep_link_##]" class="ba-article">
+                                            <s_article_related_rep_thumbnail>
+                                                <div class="thumbnail">
+                                                    <div class="bg-cover" style="background-image: url('//i1.daumcdn.net/thumb/C150x150/?fname=[##_article_related_rep_thumbnail_link_##]');"></div>
+                                                </div>
+                                            </s_article_related_rep_thumbnail>
+                                            <div class="text">
+                                                <p>
+                                                    <span class="small">[##_article_related_rep_date_##]</span> <br>
+                                                    <span class="title">[##_article_related_rep_title_##]</span>
+                                                </p>
+                                            </div>
+                                            <div class="btn">
+                                                <span class="center">
+                                                    <i class="fas fa-angle-right"></i>
+                                                </span>
+                                            </div>
+                                        </a>
+                                    </s_article_related_rep>
+                                </div>
+                            </s_article_related>
+                        </s_if_var_related-use>
+                        <s_tag_label>
+                            <div class="article-tag">
+                                <div class="title">
+                                    TAG
+                                </div>
+                                <div class="tag-list">
+                                    [##_tag_label_rep_##]
+                                </div>
+                            </div>
+                        </s_tag_label>
+                        <div class="comment-bar btn <s_if_var_comment-open> active </s_if_var_comment-open> for-comment" onclick="$(this).toggleClass('active')">
+                            <!-- + .active -->
+                            <div class="comment-bar-text">
+                                <span class="title">COMMENT</span>
+                                <s_rp_count>
+                                    <span class="cmt-count">[##_article_rep_rp_cnt_##]</span>
+                                </s_rp_count>
+                            </div>
+                            <div class="comment-bar-text right">&nbsp;</div>
+                        </div>
+                        <div class="white-box for-comment" style="height: 1em;"></div>
+                        <div class="article-comment for-comment">
+                            <s_rp>
+                                <ul class="commentbox">
+                                    <li class="no-comment">
+                                        <p class="no-article white-box">
+                                            <span>이 글엔 댓글이 아직 없습니다.</span>
+                                        </p>
+                                    </li>
+                                    <s_rp_rep>
+                                        <li id="[##_rp_rep_id_##]" class="[##_rp_rep_class_##] item-comment-box">
+                                            <div class="item-comment">
+                                                <span class="thumbnail bg-cover" style="background-image:url('[##_rp_rep_logo_##]')"></span>
+                                                <div class="comment-content">
+                                                    <div class="meta">
+                                                        <span class="title">
+                                                            <a class="title" href="[##_rp_rep_link_##]"> [##_rp_rep_name_##]</a>
+                                                        </span>
+                                                        <span class="date">[##_rp_rep_date_##]</span>
+                                                    </div>
+                                                    <div class="text main-article-content">
+                                                        <p>[##_rp_rep_desc_##]</p>
+                                                    </div>
+                                                </div>
+                                                <span class="action">
+                                                    <a href="javascript: copyText($(location).attr('protocol')+'//'+$(location).attr('host')+'[##_rp_rep_link_##]');" d-dl-tooltip="링크 복사하기">
+                                                        <i class="fas fa-clipboard"></i>
+                                                    </a>
+                                                    <a href="#" onclick="[##_rp_rep_onclick_delete_##]" d-dl-tooltip="수정/삭제">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="#" onclick="[##_rp_rep_onclick_reply_##]" d-dl-tooltip="답댓글 달기">
+                                                        <i class="fas fa-comment"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <!--reply-->
+                                            <s_rp2_container>
+                                                <ul class="commentbox-reply">
+                                                    <s_rp2_rep>
+                                                        <li id="[##_rp_rep_id_##]" class="[##_rp_rep_class_##] item-comment-box">
+                                                            <div class="item-comment">
+                                                                <span class="thumbnail bg-cover" style="background-image:url('[##_rp_rep_logo_##]')"></span>
+                                                                <div class="comment-content">
+                                                                    <div class="meta">
+                                                                        <span class="title">[##_rp_rep_name_##]
+                                                                        </span>
+                                                                        <span class="date">[##_rp_rep_date_##]</span>
+                                                                    </div>
+                                                                    <div class="text main-article-content">
+                                                                        <p>[##_rp_rep_desc_##]</p>
+                                                                    </div>
+                                                                </div>
+                                                                <span class="action">
+                                                                    <a href="javascript: copyText($(location).attr('protocol')+'//'+$(location).attr('host')+'[##_rp_rep_link_##]');" d-dl-tooltip="링크 복사하기">
+                                                                        <i class="fas fa-clipboard"></i>
+                                                                    </a>
+                                                                    <a href="#" onclick="[##_rp_rep_onclick_delete_##]" d-dl-tooltip="수정/삭제">
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </s_rp2_rep>
+                                                </ul>
+                                            </s_rp2_container>
+                                            <!--reply end-->
+                                        </li>
+                                    </s_rp_rep>
+                                </ul>
+                                <!--commentbox end-->
+                                <s_rp_input_form>
+                                    <div class="comment-write">
+                                        <div class="write-box">
+                                            <s_rp_member>
+                                                <s_rp_guest>
+                                                    <div class="write-account">
+                                                        <input type="text" name="[##_rp_input_name_##]" value="[##_guest_name_##]" placeholder="NAME">
+                                                        <input type="password" name="[##_rp_input_password_##]" value="[##_rp_admin_check_##]" maxlength="12" placeholder="PASSWORD">
+                                                        <input type="text" name="[##_rp_input_homepage_##]" value="[##_guest_homepage_##]" placeholder="HOMEPAGE">
+                                                        <label class="secret-label">
+                                                            <input type="checkbox" name="[##_rp_input_is_secret_##]" id="secret">
+                                                            <span class="secret-label-text"></span>
+                                                        </label>
+                                                    </div>
+                                                </s_rp_guest>
+                                            </s_rp_member>
+                                            <div class="write-textarea-bg">
+                                                <textarea class="write-textarea" name="[##_blog_link_##][##_rp_input_comment_##]" placeholder="COMMENT"></textarea>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn_ok" onclick="[##_rp_onclick_submit_##]">WRITE</button>
+                                    </div>
+                                </s_rp_input_form>
+                            </s_rp>
+                        </div>
+                        <s_if_var_prev-next-use>
+                            <div class="before-after">
+                                <s_article_prev>
+                                    <a href="[##_article_prev_link_##]" class="ba-article">
+                                        <s_article_prev_thumbnail>
+                                            <div class="thumbnail">
+                                                <div class="bg-cover" style="background-image: url('//i1.daumcdn.net/thumb/C150x150/?fname=[##_article_prev_thumbnail_link_##]');"></div>
+                                            </div>
+                                        </s_article_prev_thumbnail>
+                                        <div class="text">
+                                            <p>
+                                                <span class="small">이전 글</span> <br>
+                                                <span class="title">[##_article_prev_title_##]</span>
+                                            </p>
+                                        </div>
+                                        <div class="btn">
+                                            <span class="center">
+                                                <i class="fas fa-angle-double-right"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </s_article_prev>
+                                <s_article_next>
+                                    <a href="[##_article_next_link_##]" class="ba-article after">
+                                        <s_article_next_thumbnail>
+                                            <div class="thumbnail">
+                                                <div class="bg-cover" style="background-image: url('//i1.daumcdn.net/thumb/C150x150/?fname=[##_article_next_thumbnail_link_##]');"></div>
+                                            </div>
+                                        </s_article_next_thumbnail>
+                                        <div class="text">
+                                            <p>
+                                                <span class="small">다음 글</span>
+                                                <br>
+                                                <span class="title">[##_article_next_title_##]</span>
+                                            </p>
+                                        </div>
+                                        <div class="btn">
+                                            <span class="center">
+                                                <i class="fas fa-angle-double-left"></i>
+                                            </span>
+                                        </div>
+                                    </a>
+                                </s_article_next>
+                            </div>
+                        </s_if_var_prev-next-use>
+                    </article>
+                </s_article_rep>
+                <s_notice_rep>
+                    <article class="article notice">
+                        <header class="all-header">
+                            <div class="all-header-icon bg-cover" style="<s_notice_rep_thumbnail> background-image: url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_notice_rep_thumbnail_url_##]'); </s_notice_rep_thumbnail>" d-dl-tooltip="[##_notice_rep_date_##]">
+                                <div class="center title" style="text-shadow: 3px 3px 5px var(--color);">
+                                    <i class="fas fa-microphone"></i>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <span class="sub">
+                                    <a href="[##_blog_link_##]notice">공지사항</a>
+                                </span>
+                                <h2 class="title">
+                                    <a href="[##_notice_rep_link_##]">[##_notice_rep_title_##]</a>
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="main-article-content gra-box">
+                            [##_notice_rep_desc_##]
+                        </div>
+                    </article>
+                </s_notice_rep>
+                <s_article_protected>
+                    <article class="article lock">
+                        <header class="all-header">
+                            <div class="all-header-icon bg-cover" style="color: var(--point);" d-dl-tooltip="[##_article_rep_date_##]">
+                                <div class="center title">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <span class="sub">
+                                    <a href="[##_article_rep_category_link_##]">[##_article_rep_category_##]</a>
+                                </span>
+                                <h2 class="title">
+                                    <a href="[##_article_rep_link_##]">
+                                        [##_article_rep_title_##]
+                                    </a>
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="main-article-content gra-box">
+                            <div class="article-lock-box">
+                                <input type="password" class="lock-box-password" maxlength="16" id="[##_article_password_##]" name="[##_article_password_##]" placeholder="PASSWORD" value="" onkeydown="if (event.keyCode == 13)[##_article_dissolve_##]" />
+                                <input type="button" class="lock-box-submit" value="ENTER" onclick="[##_article_dissolve_##]" />
+                            </div>
+                        </div>
+                    </article>
+                </s_article_protected>
+                <s_page_rep>
+                    <article class="article page">
+                        <header class="all-header">
+                            <div class="all-header-icon bg-cover" style="background-color: var(--point);" d-dl-tooltip="[##_article_rep_date_##]">
+                                <div class="center title">
+                                    <i class="fas fa-paper-plane"></i>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <!--<span class="sub">
+                                <a href="#">카테고리</a>
+                            </span>-->
+                                <h2 class="title">
+                                    <a href="[##_article_rep_link_##]">
+                                        [##_article_rep_title_##]
+                                    </a>
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="main-article-content gra-box">
+                            [##_article_rep_desc_##]
+                        </div>
+                    </article>
+                </s_page_rep>
+                <s_guest>
+                    <article class="guestbook">
+                        <header class="all-header">
+                            <div class="all-header-icon">
+                                <div class="center">
+                                    <i class="fas fa-book"></i>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <h2 class="title">
+                                    GUESTBOOK
+                                </h2>
+                            </div>
+                        </header>
+                        <s_guest_input_form>
+                            <div class="comment-write white-box gra-box" style="padding-top: 1em">
+                                <div class="write-box">
+                                    <s_guest_member>
+                                        <s_guest_form>
+                                            <div class="write-account">
+                                                <input type="text" name="[##_guest_input_name_##]" value="[##_guest_name_##]" placeholder="NAME">
+                                                <input type="password" name="[##_guest_input_password_##]" value="[##_guest_password_##]" maxlength="12" placeholder="PASSWORD">
+                                                <input type="text" name="[##_guest_input_homepage_##]" value="[##_guest_homepage_##]" placeholder="HOMEPAGE">
+                                                <label class="secret-label">
+                                                    <input type="checkbox" name="[##_guest_input_is_secret_##]" id="secret">
+                                                    <span class="secret-label-text"></span>
+                                                </label>
+                                            </div>
+                                        </s_guest_form>
+                                    </s_guest_member>
+                                    <div class="write-textarea-bg">
+                                        <textarea class="write-textarea" name="[##_guest_textarea_body_##]" placeholder="COMMENT"></textarea>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn_ok" onclick="[##_guest_onclick_submit_##]">WRITE</button>
+                            </div>
+                            <div class="dash-bar"></div>
+                            <div class="white-box" style="height: 1em"></div>
+                        </s_guest_input_form>
+                        <s_guest_container>
+                            <div class="content white-box">
+                                <ul class="commentbox">
+                                    <li class="no-comment">
+                                        <p class="no-article white-box">
+                                            <span>아직 작성된 방명록이 없습니다.</span>
+                                        </p>
+                                    </li>
+                                    <s_guest_rep>
+                                        <li class="[##_guest_rep_class_##] item-comment-box">
+                                            <div class="item-comment" id="[##_guest_rep_id_##]">
+                                                <span class="thumbnail bg-cover" style="background-image:url('[##_guest_rep_logo_##]')"></span>
+                                                <div class="comment-content">
+                                                    <div class="meta">
+                                                        <span class="title">[##_guest_rep_name_##]</span>
+                                                        <span class="date">[##_guest_rep_date_##]</span>
+                                                    </div>
+                                                    <div class="text main-article-content">
+                                                        <p>[##_guest_rep_desc_##]</p>
+                                                    </div>
+                                                </div>
+                                                <span class="action">
+                                                    <a href="#" onclick="[##_guest_rep_onclick_delete_##]" d-dl-tooltip="수정/삭제">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                    <a href="#" onclick="[##_guest_rep_onclick_reply_##]" d-dl-tooltip="답댓글 달기">
+                                                        <i class="fas fa-comment"></i>
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <!--reply-->
+                                            <s_guest_reply_container>
+                                                <ul class="commentbox-reply">
+                                                    <s_guest_reply_rep>
+                                                        <li class="[##_guest_rep_class_##] item-comment-box">
+                                                            <div class="item-comment" id="[##_guest_rep_id_##]">
+                                                                <span class="thumbnail bg-cover" style="background-image:url('[##_guest_rep_logo_##]')"></span>
+                                                                <div class="comment-content">
+                                                                    <div class="meta">
+                                                                        <span class="title">[##_guest_rep_name_##]</span>
+                                                                        <span class="date">[##_guest_rep_date_##]</span>
+                                                                    </div>
+                                                                    <div class="text main-article-content">
+                                                                        <p>[##_guest_rep_desc_##]</p>
+                                                                    </div>
+                                                                </div>
+                                                                <span class="action">
+                                                                    <a href="#" onclick="[##_guest_rep_onclick_delete_##]" d-dl-tooltip="수정/삭제">
+                                                                        <i class="fas fa-edit"></i>
+                                                                    </a>
+                                                                </span>
+                                                            </div>
+                                                        </li>
+                                                    </s_guest_reply_rep>
+                                                </ul>
+                                            </s_guest_reply_container>
+                                            <!--reply end-->
+                                        </li>
+                                    </s_guest_rep>
+                                </ul>
+                            </div>
+                        </s_guest_container>
+                    </article>
+                </s_guest>
+                <s_tag>
+                    <article class="tagbox">
+                        <header class="all-header">
+                            <div class="all-header-icon">
+                                <div class="center">
+                                    <i class="fas fa-hashtag"></i>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <h2 class="title">
+                                    TAG
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="content white-box gra-box">
+                            <div class="tag-list">
+                                <s_tag_rep>
+                                    <a href="[##_tag_link_##]" class="[##_tag_class_##]">[##_tag_name_##]</a>
+                                </s_tag_rep>
+                            </div>
+                        </div>
+                    </article>
+                </s_tag>
+                <s_local>
+                    <article class="tagbox">
+                        <header class="all-header">
+                            <div class="all-header-icon">
+                                <div class="center">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                            </div>
+                            <div class="all-header-text">
+                                <h2 class="title">
+                                    LOCAL
+                                </h2>
+                            </div>
+                        </header>
+                        <div class="content white-box gra-box">
+                            <s_local_spot_rep>
+                                <div class="spot" style="margin-left: [##_local_spot_depth_##]px">
+                                    [##_local_spot_##]
+                                </div>
+                            </s_local_spot_rep>
+                            <s_local_info_rep>
+                                <div class="info" style="margin-left: [##_local_info_depth_##]px">
+                                    <a href="[##_local_info_link_##]">[##_local_info_title_##]</a>
+                                </div>
+                            </s_local_info_rep>
+                        </div>
+                    </article>
+                </s_local>
+                <s_paging>
+                    <div class="paging-box">
+                        <a [##_prev_page_##] class="link_page [##_no_more_prev_##]"></a>
+                        <div class="paging_num">
+                            <s_paging_rep>
+                                <a [##_paging_rep_link_##] class="link_num">[##_paging_rep_link_num_##]</a>
+                            </s_paging_rep>
+                        </div>
+                        <a [##_next_page_##] class="link_page [##_no_more_next_##]"></a>
+                    </div>
+                </s_paging>
+                <footer class="copyright">
+                    <!--수정 금지-->
+                    DESIGN BY <a target="_blank" href="https://d-dl.tistory.com">ㅓㅇ</a>
+                </footer>
+            </section>
+        </div>
+        <!--all end-->
+        <script type="text/javascript" src="./images/script.js"></script>
+        <script type=text/javascript src="./images/autolink.js"></script>
+        <script>
+            autolink($('.commentbox .main-article-content'));
+
+        </script>
+    </s_t3>
+</body>
+
+</html>
