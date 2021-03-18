@@ -5,12 +5,12 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]" />
     <meta name="author" content="[##_blogger_##]">
-    <meta name="description" content="[##_title_##]">
     <meta name="keywords" content="[##_meta_http_equiv_keywords_##]">
     <meta name="viewport" content="width=device-width">
+    <meta name="theme-color" content="[##_var_color-color_##]">
 
     <title>[##_page_title_##] - [##_title_##]</title>
-    <script type="text/javascript">
+    <script>
         var pageTitle = "[##_page_title_##]";
         var blogTitle = '[##_title_##]';
         if (pageTitle == blogTitle) {
@@ -62,8 +62,9 @@
         */
 
     </style>
+    <script src="https://t1.daumcdn.net/tistory_admin/lib/jquery/jquery-3.2.1.min.js"></script>
+    <!--티스토리 공식으로 사용중인 jqeury 코드-->
     <link rel="stylesheet" type="text/css" href="./style.css">
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 </head>
 
@@ -98,12 +99,12 @@
                                         <div class="center">
                                             <ul class="metabtn">
                                                 <li>
-                                                    <a href="[##_blog_link_##]manage" d-dl-tooltip="환경설정">
+                                                    <a href="[##_blog_link_##]manage" rel="noopener" d-dl-tooltip="환경설정">
                                                         <i class="fas fa-wrench"></i>
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    <a href="[##_blog_link_##]manage/post" d-dl-tooltip="글쓰기">
+                                                    <a href="[##_blog_link_##]manage/post" rel="noopener" d-dl-tooltip="글쓰기">
                                                         <i class="fas fa-feather-alt"></i>
                                                     </a>
                                                 </li>
@@ -362,6 +363,30 @@
                         </div>
                     </s_sidebar_element>
                     <s_sidebar_element>
+                        <!-- 링크 -->
+                        <div class="recentComment">
+                            <div class="all-header">
+                                <div class="all-header-icon">
+                                    <div class="center">
+                                        <i class="fas fa-link"></i>
+                                    </div>
+                                </div>
+                                <div class="all-header-text">
+                                    <span class="title">
+                                        링크
+                                    </span>
+                                </div>
+                            </div>
+                            <ul class="rctrp" style="list-style: square; list-style-position: inside;">
+                                <s_link_rep>
+                                    <li>
+                                        <a href="[##_link_url_##]" target="_blank">[##_link_site_##]</a>
+                                    </li>
+                                </s_link_rep>
+                            </ul>
+                        </div>
+                    </s_sidebar_element>
+                    <s_sidebar_element>
                         <!-- 트위터 위젯 -->
                         <div class="twitter">
                             <div class="all-header">
@@ -388,28 +413,28 @@
                             <ul class="metabtn">
                                 <s_if_var_instagram-id>
                                     <li id="instagram-icon">
-                                        <a href="https://www.instagram.com/[##_var_instagram-id_##]" target="_blank" d-dl-tooltip="인스타그램">
+                                        <a href="https://www.instagram.com/[##_var_instagram-id_##]" target="_blank" rel="noopener" d-dl-tooltip="인스타그램">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </li>
                                 </s_if_var_instagram-id>
                                 <s_if_var_twitter-id>
                                     <li id="twitter-icon">
-                                        <a href="https://twitter.com/[##_var_twitter-id_##]" target="_blank" d-dl-tooltip="트위터">
+                                        <a href="https://twitter.com/[##_var_twitter-id_##]" target="_blank" rel="noopener" d-dl-tooltip="트위터">
                                             <i class="fab fa-twitter"></i>
                                         </a>
                                     </li>
                                 </s_if_var_twitter-id>
                                 <s_if_var_facebook-id>
                                     <li id="facebook-icon">
-                                        <a href="https://www.facebook.com/[##_var_facebook-id_##]" target="_blank" d-dl-tooltip="페이스북">
+                                        <a href="https://www.facebook.com/[##_var_facebook-id_##]" target="_blank" rel="noopener" d-dl-tooltip="페이스북">
                                             <i class="fab fa-facebook-square"></i>
                                         </a>
                                     </li>
                                 </s_if_var_facebook-id>
                                 <s_if_var_github-id>
                                     <li id="github-icon">
-                                        <a href="https://github.com/[##_var_github-id_##]" target="_blank" d-dl-tooltip="깃허브">
+                                        <a href="https://github.com/[##_var_github-id_##]" target="_blank" rel="noopener" d-dl-tooltip="깃허브">
                                             <i class="fab fa-github-square"></i>
                                         </a>
                                     </li>
@@ -448,7 +473,7 @@
                                     <!-- class : default, long, list -->
                                     <s_cover_item>
                                         <div class="thumb-box">
-                                            <div class="thumb bg-cover" style="<s_cover_item_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x720/?fname=[##_cover_item_thumbnail_##]') </s_cover_item_thumbnail>">
+                                            <div class="thumb bg-cover" style="<s_cover_item_thumbnail> background-image: url('//i1.daumcdn.net/thumb/C300x300/?fname=[##_cover_item_thumbnail_##]') </s_cover_item_thumbnail>">
                                                 <div class="thumb-content">
                                                     <s_cover_item_not_article_info>
                                                         <div class="text center">
@@ -509,7 +534,7 @@
                                     <!-- class : default, long, list -->
                                     <s_cover_item>
                                         <div class="thumb-box">
-                                            <div class="thumb bg-cover" style="<s_cover_item_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x720/?fname=[##_cover_item_thumbnail_##]') </s_cover_item_thumbnail>">
+                                            <div class="thumb bg-cover" style="<s_cover_item_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x520/?fname=[##_cover_item_thumbnail_##]') </s_cover_item_thumbnail>">
                                                 <div class="thumb-content">
                                                     <s_cover_item_not_article_info>
                                                         <div class="text center">
@@ -674,7 +699,7 @@
                             <!-- class : default, long, list -->
                             <s_list_rep>
                                 <div class="thumb-box">
-                                    <div class="thumb bg-cover" style="<s_list_rep_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x720/?fname=[##_list_rep_thumbnail_##]') </s_list_rep_thumbnail>">
+                                    <div class="thumb bg-cover" style="<s_list_rep_thumbnail> background-image: url('//i1.daumcdn.net/thumb/R0x520/?fname=[##_list_rep_thumbnail_##]') </s_list_rep_thumbnail>">
                                         <div class="thumb-content">
                                             <div class="text center">
                                                 <a class="listct small" href="[##_list_rep_category_link_##]">
@@ -819,7 +844,7 @@
                                     <s_rp_rep>
                                         <li id="[##_rp_rep_id_##]" class="[##_rp_rep_class_##] item-comment-box">
                                             <div class="item-comment">
-                                                <span class="thumbnail bg-cover" style="background-image:url('[##_rp_rep_logo_##]')"></span>
+                                                <span class="thumbnail bg-cover" style="background-image:url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_rp_rep_logo_##]')"></span>
                                                 <div class="comment-content">
                                                     <div class="meta">
                                                         <span class="title">
@@ -849,7 +874,7 @@
                                                     <s_rp2_rep>
                                                         <li id="[##_rp_rep_id_##]" class="[##_rp_rep_class_##] item-comment-box">
                                                             <div class="item-comment">
-                                                                <span class="thumbnail bg-cover" style="background-image:url('[##_rp_rep_logo_##]')"></span>
+                                                                <span class="thumbnail bg-cover" style="background-image:url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_rp_rep_logo_##]')"></span>
                                                                 <div class="comment-content">
                                                                     <div class="meta">
                                                                         <span class="title">[##_rp_rep_name_##]
@@ -1073,7 +1098,7 @@
                                     <s_guest_rep>
                                         <li class="[##_guest_rep_class_##] item-comment-box">
                                             <div class="item-comment" id="[##_guest_rep_id_##]">
-                                                <span class="thumbnail bg-cover" style="background-image:url('[##_guest_rep_logo_##]')"></span>
+                                                <span class="thumbnail bg-cover" style="background-image:url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_guest_rep_logo_##]')"></span>
                                                 <div class="comment-content">
                                                     <div class="meta">
                                                         <span class="title">[##_guest_rep_name_##]</span>
@@ -1098,7 +1123,7 @@
                                                     <s_guest_reply_rep>
                                                         <li class="[##_guest_rep_class_##] item-comment-box">
                                                             <div class="item-comment" id="[##_guest_rep_id_##]">
-                                                                <span class="thumbnail bg-cover" style="background-image:url('[##_guest_rep_logo_##]')"></span>
+                                                                <span class="thumbnail bg-cover" style="background-image:url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_guest_rep_logo_##]')"></span>
                                                                 <div class="comment-content">
                                                                     <div class="meta">
                                                                         <span class="title">[##_guest_rep_name_##]</span>
@@ -1195,8 +1220,8 @@
             </section>
         </div>
         <!--all end-->
-        <script type="text/javascript" src="./images/script.js"></script>
-        <script type=text/javascript src="./images/autolink.js"></script>
+        <script src="./images/script.js"></script>
+        <script src="./images/autolink.js"></script>
         <script>
             autolink($('.commentbox .main-article-content'));
 

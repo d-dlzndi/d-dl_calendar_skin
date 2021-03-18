@@ -100,12 +100,11 @@ window.onload = function () {
             }, 500);
         }
     });
-
     $('body').addClass('loaded');
 };
 
 function copyText(txt) {
-    prompt("URL 복사", txt);
+    prompt("ctrl+C를 눌러 복사하세요.", txt);
 }
 
 function sideToggle() {
