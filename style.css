@@ -320,7 +320,7 @@ i.fas {
 
 #sideBtn {
     position: fixed;
-    padding: .2em .5em 0;
+    padding: .35em .5em .4em;
     background-color: var(--point);
     color: var(--base);
     font-size: 2em;
@@ -329,6 +329,7 @@ i.fas {
     z-index: 1000;
     display: none;
     border: 0;
+    line-height: 1;
 }
 
 #sideBtn:active {
