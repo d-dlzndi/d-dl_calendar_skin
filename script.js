@@ -95,8 +95,11 @@ window.onload = function () {
     });
     $('a.btn-toggle-moreless').click(function () {
         if (!$(this).closest('div[data-ke-type="moreLess"]').hasClass('open')) {
+            var scrollBody = $("html, body").scrollTop();
+            var scrollThis = $(this).offset().top;
+            if (scrollBody < scrollThis) return;
             $("html, body").stop().animate({
-                scrollTop: $(this).offset().top - 50
+                scrollTop: scrollThis - 50
             }, 500);
         }
     });
