@@ -1608,6 +1608,7 @@ body.loaded .content-side {
     padding: .2em .2em .5em;
     position: relative;
     width: 100%;
+    line-height: 1.4;
 }
 
 .commentbox-reply {
@@ -1828,8 +1829,9 @@ body.loaded .content-side {
     text-decoration: none !important;
     margin-left: 2px;
     transform: scale(.9);
-    position: relative;
-    bottom: 3px;
+    position: static;
+    width: 1em;
+    text-align: right;
 }
 
 .main-article-content figcaption {
@@ -1885,8 +1887,13 @@ body.loaded .content-side {
     position: relative;
     z-index: 1;
     opacity: .9;
-    font-size: inherit;
-    color: inherit;
+    line-height: 1.5;
+}
+
+.main-article-content blockquote, 
+.main-article-content blockquote p {
+    font-size: inherit !important;
+    color: inherit !important;
 }
 
 .main-article-content blockquote::before {
@@ -2028,11 +2035,8 @@ body.loaded .content-side {
 .main-article-content ol,
 .main-article-content ul {
     padding: .5em .1em;
-}
-
-.main-article-content ol,
-.main-article-content ul {
-    padding: .5em .1em;
+    text-indent: -1em;
+    margin-left: 1em;
 }
 
 .main-article-content mark {
@@ -2315,7 +2319,7 @@ body.loaded .content-side {
         margin: 0;
         width: calc(var(--side-width) + (var(--margin-width) * 2));
         min-width: 200px;
-        max-width: 90vw;
+        max-width: 85vw !important;
         padding: 50px 20px;
         max-height: 100vh;
         overflow-y: auto;
