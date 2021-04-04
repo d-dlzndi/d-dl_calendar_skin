@@ -80,9 +80,10 @@ body {
 
 #bg {
     position: fixed;
-    width: 100vw;
-    height: 100vh;
+    width: 105vw;
+    height: 105vh;
     top: 0;
+    right: 0;
     z-index: -100;
     background: var(--background) no-repeat center center /cover;
     background-blend-mode: var(--background-blend-mode);
@@ -1809,6 +1810,10 @@ body.loaded .content-side {
     margin-bottom: 0;
 }
 
+.main-article-content p > * {
+    text-align: inherit !important;
+}
+
 .main-article-content a {
     word-break: break-all;
     color: var(--point);
@@ -1890,7 +1895,7 @@ body.loaded .content-side {
     line-height: 1.5;
 }
 
-.main-article-content blockquote, 
+.main-article-content blockquote,
 .main-article-content blockquote p {
     font-size: inherit !important;
     color: inherit !important;
@@ -2309,6 +2314,10 @@ body.loaded .content-side {
     #navi {
         display: none;
     }
+    
+    body:not(.loaded) .menu-side {
+        animation-duration: 0s;
+    }
 
     .menu-side {
         display: block;
@@ -2320,11 +2329,15 @@ body.loaded .content-side {
         width: calc(var(--side-width) + (var(--margin-width) * 2));
         min-width: 200px;
         max-width: 85vw !important;
-        padding: 50px 20px;
-        max-height: 100vh;
+        padding: 50px 20px 80px;
+        max-height: 105vh;
         overflow-y: auto;
         background: linear-gradient(90deg, var(--color) -30%, transparent 180%);
-        transition: left .6s;
+        pointer-events: none;
+        visibility: hidden;
+        animation-name: _menu-shut;
+        animation-duration: .5s;
+        animation-direction: normal;
     }
 
     .menu-side::before {
@@ -2347,16 +2360,56 @@ body.loaded .content-side {
         height: 100%;
         min-height: 100%;
         overflow: hidden !important;
-        touch-action: none;
     }
 
     body.open .menu-side {
-        left: 0;
+        animation-name: _menu-open;
+    }
+
+    @-webkit-keyframes _menu-open {
+        0% {
+            left: -100%;
+            pointer-events: none;
+            visibility: hidden;
+        }
+
+        1% {
+            left: -100%;
+            pointer-events: none;
+            visibility: visible;
+        }
+
+        100% {
+            left: 0;
+            pointer-events: auto;
+            visibility: visible;
+        }
+    }
+
+    @-webkit-keyframes _menu-shut {
+        0% {
+            left: 0;
+            pointer-events: auto;
+            visibility: visible;
+        }
+
+        99% {
+            left: -100%;
+            pointer-events: none;
+            visibility: visible;
+        }
+
+        100% {
+            left: -100%;
+            pointer-events: none;
+            visibility: hidden;
+        }
     }
 
     body.open .content-side {
         opacity: .5;
         transition: opacity .4s;
+        pointer-events: none;
     }
 
     body.open #blank {
