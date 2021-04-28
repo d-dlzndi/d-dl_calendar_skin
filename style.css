@@ -828,12 +828,8 @@ body.loaded .content-side {
 }
 
 /*긴 썸네일*/
-.list-style.long {
-    flex-wrap: nowrap;
-}
-
 .list-style.long .thumb-box {
-    width: calc(100% / 3);
+    width: calc(100% / var(--long-thumb-count));
 }
 
 .list-style.long .thumb {
@@ -2437,10 +2433,6 @@ body.loaded .content-side {
         100% {
             pointer-events: auto;
         }
-    }
-
-    .list-style.long {
-        flex-wrap: wrap;
     }
 
     .list-style.long .thumb-box {
