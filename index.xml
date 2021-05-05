@@ -3,7 +3,7 @@
     <information>
         <name>D-DL Calendar Skin</name>
         <!-- 스킨의 이름 -->
-        <version>1.01</version>
+        <version>1.02</version>
         <!-- 스킨의 버전 -->
         <description>
             <!-- 스킨의 상세 설명 -->
@@ -333,7 +333,9 @@
                 </label>
                 <type>IMAGE</type>
                 <option />
-                <default><![CDATA[ https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fblp996%2FbtqZ0t3rt5E%2FLNEJcEWfnIF7a6ScoR5NO1%2Fimg.jpg ]]></default>
+                <default>
+                    <![CDATA[ https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fblp996%2FbtqZ0t3rt5E%2FLNEJcEWfnIF7a6ScoR5NO1%2Fimg.jpg ]]>
+                </default>
                 <description>
                     <![CDATA[ CSS의 Background 프로퍼티를 참조하세요. ]]>
                 </description>
@@ -367,18 +369,6 @@
                     ]]>
                 </option>
                 <default>overlay</default>
-            </variable>
-            <variable>
-                <name>background-opacity</name>
-                <label>
-                    <![CDATA[ 배경의 불투명도(0~1 사이의 소수) ]]>
-                </label>
-                <type>STRING</type>
-                <option />
-                <default>0.7</default>
-                <description>
-                    <![CDATA[ CSS의 Opacity 프로퍼티를 참조하세요. ]]>
-                </description>
             </variable>
         </variablegroup>
         <variablegroup name="프로필 설정">

@@ -72,22 +72,10 @@ body {
     font-size: 11pt;
     line-height: 1.7;
     letter-spacing: -0.05em;
-    background: transparent;
     color: var(--color);
     overflow-x: hidden;
-    background-color: var(--base);
-}
-
-#bg {
-    position: fixed;
-    width: 105vw;
-    height: 105vh;
-    top: 0;
-    right: 0;
-    z-index: -100;
-    background: var(--background) no-repeat center center /cover;
+    background: var(--background) no-repeat fixed center center /cover;
     background-blend-mode: var(--background-blend-mode);
-    opacity: var(--background-opacity);
 }
 
 h1,
@@ -175,6 +163,11 @@ input::placeholder {
     width: 14px;
     height: 14px;
     padding: 2px;
+}
+
+body::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track-piece {
+    background-color:  var(--base);
 }
 
 *:not(body)::-webkit-scrollbar {
