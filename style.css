@@ -104,7 +104,8 @@ h6,
 .main-article-content div[data-ke-type="moreLess"] a.btn-toggle-moreless::before,
 .main-article-content div[data-ke-type="moreLess"] a.btn-toggle-moreless::after,
 .main-article-content a[target="_blank"]:not([data-source-url]):not(.link_ccl)::after,
-.menu-side a[target="_blank"]::after {
+.menu-side a[target="_blank"]::after,
+.main-article-content blockquote[data-ke-style="style1"]::before {
     font-family: 'Font Awesome 5 Free';
     font-style: normal;
     font-weight: 900;
@@ -1880,7 +1881,7 @@ body.loaded .content-side {
     padding: 1em 1.1em;
     position: relative;
     z-index: 1;
-    opacity: .9;
+    opacity: .95;
     line-height: 1.5;
 }
 
@@ -1902,6 +1903,24 @@ body.loaded .content-side {
     left: 0;
     padding-left: -6px;
     z-index: -1;
+}
+
+.main-article-content blockquote[data-ke-style="style1"] {
+    border: 0;
+    border-radius: 0;
+    text-align: center;
+    padding: 0 1em;
+}
+
+.main-article-content blockquote[data-ke-style="style1"]::before {
+    position: static;
+    width: 100%;
+    text-align: center;
+    display: block;
+    content: "\f10d";
+    background: transparent;
+    font-size: 1.3em;
+    margin-bottom: .2em;
 }
 
 .main-article-content blockquote[data-ke-style="style3"] {
