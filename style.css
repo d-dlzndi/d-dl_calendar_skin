@@ -140,12 +140,13 @@ ol {
     list-style-position: inside;
 }
 
-a[href]:not([href="http://"]),
+a[href]:not([href="http://"]):not([href="https://"]),
 .pointer,
 .btn,
 button,
-label {
-    cursor: pointer;
+label,
+.thumb > .thumb-content .text a {
+    cursor: pointer !important;
 }
 
 input {
@@ -557,7 +558,7 @@ body.loaded .content-side {
 
 .all-header-text {
     position: relative;
-    width: calc(100% - 2.3em);
+    width: calc(100% - 2.15em);
     background-color: var(--base);
     padding: .7em .6em .65em;
     height: auto;
@@ -680,7 +681,6 @@ body.loaded .content-side {
     z-index: 3;
     margin-top: .5em;
     font-size: 1em;
-    overflow: hidden;
     transition: all .3s;
     line-height: 1.2;
 }
@@ -693,10 +693,10 @@ body.loaded .content-side {
 .blog-menu a::after {
     content: "";
     display: block;
-    width: 100%;
+    width: 100.3%;
     height: 100%;
     top: 0;
-    left: 0;
+    right: 0;
     position: absolute;
 }
 
@@ -707,10 +707,12 @@ body.loaded .content-side {
 
 .blog-menu a::after {
     z-index: -1;
-    left: -100%;
+    width: 0%;
+    right: auto;
+    left: 0;
     background-color: var(--point);
     opacity: .2;
-    transition: left .4s;
+    transition: width .4s;
 }
 
 .blog-menu a:hover {
@@ -721,7 +723,7 @@ body.loaded .content-side {
 }
 
 .blog-menu a:hover::after {
-    left: 0;
+    width: 100%;
     transition: all 0s;
 }
 
@@ -2341,7 +2343,6 @@ body.loaded .content-side {
         max-height: 105vh;
         overflow-y: auto;
         background: linear-gradient(90deg, var(--color) -30%, transparent 180%);
-        pointer-events: none;
         visibility: hidden;
         animation-name: _menu-shut;
         animation-duration: .5s;
@@ -2389,7 +2390,7 @@ body.loaded .content-side {
 
         100% {
             left: 0;
-            pointer-events: auto;
+            pointer-events: auto !important;
             visibility: visible;
         }
     }
@@ -2397,7 +2398,7 @@ body.loaded .content-side {
     @-webkit-keyframes _menu-shut {
         0% {
             left: 0;
-            pointer-events: auto;
+            pointer-events: auto !important;
             visibility: visible;
         }
 
@@ -2429,7 +2430,9 @@ body.loaded .content-side {
     }
 
     .thumb > .thumb-content .text a {
-        pointer-events: none;
+        animation-name: _pointerNO;
+        animation-direction: normal;
+        animation-duration: .001s;
     }
 
     .thumb:hover > .thumb-content .text a {
@@ -2438,12 +2441,23 @@ body.loaded .content-side {
     }
 
     @-webkit-keyframes _pointer {
-        99% {
+        0% {
             pointer-events: none;
         }
 
         100% {
-            pointer-events: auto;
+            pointer-events: auto !important;
+            cursor: pointer;
+        }
+    }
+
+    @-webkit-keyframes _pointerNO {
+        0% {
+            pointer-events: auto !important;
+        }
+        
+        100% {
+            pointer-events: none;
         }
     }
 

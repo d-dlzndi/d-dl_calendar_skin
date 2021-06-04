@@ -860,8 +860,8 @@
                                         </p>
                                     </li>
                                     <s_rp_rep>
-                                        <li id="[##_rp_rep_id_##]" class="[##_rp_rep_class_##] item-comment-box">
-                                            <div class="item-comment">
+                                        <li class="[##_rp_rep_class_##] item-comment-box">
+                                            <div id="[##_rp_rep_id_##]" class="item-comment">
                                                 <span class="thumbnail bg-cover" style="background-image:url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_rp_rep_logo_##]')"></span>
                                                 <div class="comment-content">
                                                     <div class="meta">
@@ -890,8 +890,8 @@
                                             <s_rp2_container>
                                                 <ul class="commentbox-reply">
                                                     <s_rp2_rep>
-                                                        <li id="[##_rp_rep_id_##]" class="[##_rp_rep_class_##] item-comment-box">
-                                                            <div class="item-comment">
+                                                        <li class="[##_rp_rep_class_##] item-comment-box">
+                                                            <div id="[##_rp_rep_id_##]" class="item-comment">
                                                                 <span class="thumbnail bg-cover" style="background-image:url('//i1.daumcdn.net/thumb/C50x50/?fname=[##_rp_rep_logo_##]')"></span>
                                                                 <div class="comment-content">
                                                                     <div class="meta">
@@ -1105,14 +1105,14 @@
                             <div class="dash-bar"></div>
                             <div class="white-box" style="height: 1em"></div>
                         </s_guest_input_form>
-                        <s_guest_container>
-                            <div class="content white-box">
-                                <ul class="commentbox">
-                                    <li class="no-comment">
-                                        <p class="no-article white-box">
-                                            <span>아직 작성된 방명록이 없습니다.</span>
-                                        </p>
-                                    </li>
+                        <div class="content white-box">
+                            <ul class="commentbox">
+                                <li class="no-comment">
+                                    <p class="no-article white-box">
+                                        <span>아직 작성된 방명록이 없습니다.</span>
+                                    </p>
+                                </li>
+                                <s_guest_container>
                                     <s_guest_rep>
                                         <li class="[##_guest_rep_class_##] item-comment-box">
                                             <div class="item-comment" id="[##_guest_rep_id_##]">
@@ -1164,9 +1164,9 @@
                                             <!--reply end-->
                                         </li>
                                     </s_guest_rep>
-                                </ul>
-                            </div>
-                        </s_guest_container>
+                                </s_guest_container>
+                            </ul>
+                        </div>
                     </article>
                 </s_guest>
                 <s_tag>
@@ -1185,6 +1185,11 @@
                         </header>
                         <div class="content white-box gra-box">
                             <div class="tag-list">
+                                <div class="no-comment">
+                                    <p class="no-article">
+                                        <span>아직 사용된 태그가 없습니다.</span>
+                                    </p>
+                                </div>
                                 <s_tag_rep>
                                     <a href="[##_tag_link_##]" class="[##_tag_class_##]">[##_tag_name_##]</a>
                                 </s_tag_rep>
@@ -1207,6 +1212,11 @@
                             </div>
                         </header>
                         <div class="content white-box gra-box">
+                            <div class="no-comment">
+                                <p class="no-article">
+                                    <span>아직 사용된 위치가 없습니다.</span>
+                                </p>
+                            </div>
                             <s_local_spot_rep>
                                 <div class="spot" style="margin-left: [##_local_spot_depth_##]px">
                                     [##_local_spot_##]
