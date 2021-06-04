@@ -1004,13 +1004,13 @@ body.loaded .content-side {
     position: absolute;
     line-height: 1;
     font-size: 1.3em;
-    top: 34%;
+    top: 36%;
     left: 200%;
     transform: rotate(-45deg);
     text-align: center;
     transition: left .4s;
     word-break: break-all;
-    width: 2.9em;
+    width: 2.4em;
 }
 
 .thumb:hover > .thumb-content .point-date {
