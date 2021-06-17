@@ -3,7 +3,7 @@
     <information>
         <name>D-DL Calendar Skin</name>
         <!-- 스킨의 이름 -->
-        <version>1.03</version>
+        <version>1.04</version>
         <!-- 스킨의 버전 -->
         <description>
             <!-- 스킨의 상세 설명 -->
@@ -463,7 +463,7 @@
             <variable>
                 <name>blog-mainicon</name>
                 <label>
-                    <![CDATA[ 블로그 메인에서 보여줄 아이콘 ]]>
+                    <![CDATA[ 블로그 메인에서 보여줄 아이콘 (작은 따옴표 사용 불가) ]]>
                 </label>
                 <type>STRING</type>
                 <option />
@@ -472,7 +472,7 @@
             <variable>
                 <name>blog-subicon</name>
                 <label>
-                    <![CDATA[ 전체 글에서 보여줄 아이콘 ]]>
+                    <![CDATA[ 전체 글에서 보여줄 아이콘 (작은 따옴표 사용 불가) ]]>
                 </label>
                 <type>STRING</type>
                 <option />
