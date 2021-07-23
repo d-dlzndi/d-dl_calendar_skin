@@ -68,7 +68,7 @@
 }
 
 body {
-    font-family: 'KoPubWorld돋움체', 'KoPub돋움체', '맑은 고딕', sans-serif;
+    font-family: 'KoPubWorld돋움체', 'KoPub돋움체', 'Noto Sans KR', '맑은 고딕', sans-serif;
     font-size: 11pt;
     line-height: 1.7;
     letter-spacing: -0.05em;
@@ -1010,7 +1010,7 @@ body.loaded .content-side {
     text-align: center;
     transition: left .4s;
     word-break: break-all;
-    width: 2.4em;
+    width: 3em;
 }
 
 .thumb:hover > .thumb-content .point-date {

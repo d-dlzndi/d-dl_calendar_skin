@@ -77,7 +77,8 @@ window.onload = function () {
     });
     $('.dot-edit').each(function () {
         var dot = $(this).html();
-        $(this).html(dot.replaceAll('.', ''));
+        dot = dot.trim().replaceAll('.', '');
+        $(this).html(dot.slice(0,4) + '<br>' + dot.slice(4));
     });
     $('.description').each(function () {
         var txt = $.trim($(this).find('p').text());
