@@ -645,6 +645,10 @@ body.loaded .content-side {
     border-bottom: var(--comment-border);
 }
 
+.menu-side .module > a > img {
+    display: block;
+}
+
 .menu-side li .small {
     white-space: nowrap;
     text-overflow: ellipsis;
