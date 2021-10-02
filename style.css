@@ -372,6 +372,7 @@ i.fas {
 #all {
     margin: 80px auto 40px;
     display: flex;
+	width: min-content;
     width: fit-content;
     max-width: 95%;
 }
