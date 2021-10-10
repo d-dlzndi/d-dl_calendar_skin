@@ -1,6 +1,15 @@
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="ko">
-
+<!--
+삭제 금지
+______         ______  _     
+|  _  \        |  _  \| |    
+| | | | ______ | | | || |    
+| | | ||______|| | | || |    
+| |/ /         | |/ / | |____
+|___/          |___/  \_____/
+TISTORY SKIN BY https://d-dl.tistory.com/
+-->
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <link rel="alternate" type="application/rss+xml" title="[##_title_##]" href="[##_rss_url_##]" />
@@ -943,7 +952,7 @@
                                                 <textarea class="write-textarea" name="[##_blog_link_##][##_rp_input_comment_##]" placeholder="COMMENT"></textarea>
                                             </div>
                                         </div>
-                                        <button type="button" class="btn_ok" onclick="[##_rp_onclick_submit_##]">WRITE</button>
+                                        <button type="button" class="btn_ok" onclick="commentlink(); [##_rp_onclick_submit_##]">WRITE</button>
                                     </div>
                                 </s_rp_input_form>
                             </s_rp>
@@ -1102,7 +1111,7 @@
                                         <textarea class="write-textarea" name="[##_guest_textarea_body_##]" placeholder="COMMENT"></textarea>
                                     </div>
                                 </div>
-                                <button type="button" class="btn_ok" onclick="[##_guest_onclick_submit_##]">WRITE</button>
+                                <button type="button" class="btn_ok" onclick="commentlink(); [##_guest_onclick_submit_##]">WRITE</button>
                             </div>
                             <div class="dash-bar"></div>
                             <div class="white-box" style="height: 1em"></div>
@@ -1253,8 +1262,10 @@
         <script src="./images/script.js"></script>
         <script src="./images/autolink.js"></script>
         <script>
-            autolink($('.commentbox .main-article-content'));
-
+			function commentlink(){
+				autolink($('.commentbox .main-article-content'));
+			}
+            commentlink();
         </script>
     </s_t3>
 </body>
