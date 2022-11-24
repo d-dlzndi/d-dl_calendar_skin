@@ -1696,6 +1696,7 @@ body.loaded .content-side {
     width: 2.5em;
     max-width: 2.5em;
     min-width: 2.5em;
+    padding: 0 .2em;
 }
 
 .secret-label::before {

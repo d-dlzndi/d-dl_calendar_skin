@@ -935,21 +935,23 @@ TISTORY SKIN BY https://d-dl.tistory.com/
                                 <s_rp_input_form>
                                     <div class="comment-write">
                                         <div class="write-box">
+                                            <div class="write-account">
+                                                <label class="secret-label">
+                                                    <input type="checkbox" name="[##_rp_input_is_secret_##]" id="secret">
+                                                    <span class="secret-label-text"></span>
+                                                </label>
+                                            </div>
                                             <s_rp_member>
                                                 <s_rp_guest>
                                                     <div class="write-account">
                                                         <input type="text" name="[##_rp_input_name_##]" value="[##_guest_name_##]" placeholder="NAME">
                                                         <input type="password" name="[##_rp_input_password_##]" value="[##_rp_admin_check_##]" maxlength="12" placeholder="PASSWORD">
                                                         <input type="text" name="[##_rp_input_homepage_##]" value="[##_guest_homepage_##]" placeholder="HOMEPAGE">
-                                                        <label class="secret-label">
-                                                            <input type="checkbox" name="[##_rp_input_is_secret_##]" id="secret">
-                                                            <span class="secret-label-text"></span>
-                                                        </label>
                                                     </div>
                                                 </s_rp_guest>
                                             </s_rp_member>
                                             <div class="write-textarea-bg">
-                                                <textarea class="write-textarea" name="[##_blog_link_##][##_rp_input_comment_##]" placeholder="COMMENT"></textarea>
+                                                <textarea class="write-textarea" name="[##_rp_input_comment_##]" placeholder="COMMENT"></textarea>
                                             </div>
                                         </div>
                                         <button type="button" class="btn_ok" onclick="commentlink(); [##_rp_onclick_submit_##]">WRITE</button>
@@ -1094,16 +1096,18 @@ TISTORY SKIN BY https://d-dl.tistory.com/
                         <s_guest_input_form>
                             <div class="comment-write white-box gra-box" style="padding-top: 1em">
                                 <div class="write-box">
+                                    <div class="write-account">
+                                        <label class="secret-label">
+                                            <input type="checkbox" name="[##_guest_input_is_secret_##]" id="secret">
+                                            <span class="secret-label-text"></span>
+                                        </label>
+                                    </div>
                                     <s_guest_member>
                                         <s_guest_form>
                                             <div class="write-account">
                                                 <input type="text" name="[##_guest_input_name_##]" value="[##_guest_name_##]" placeholder="NAME">
                                                 <input type="password" name="[##_guest_input_password_##]" value="[##_guest_password_##]" maxlength="12" placeholder="PASSWORD">
                                                 <input type="text" name="[##_guest_input_homepage_##]" value="[##_guest_homepage_##]" placeholder="HOMEPAGE">
-                                                <label class="secret-label">
-                                                    <input type="checkbox" name="[##_guest_input_is_secret_##]" id="secret">
-                                                    <span class="secret-label-text"></span>
-                                                </label>
                                             </div>
                                         </s_guest_form>
                                     </s_guest_member>
@@ -1254,7 +1258,7 @@ TISTORY SKIN BY https://d-dl.tistory.com/
                 </s_paging>
                 <footer class="copyright">
                     <!--수정 금지-->
-                    DESIGN BY <a target="_blank" href="https://d-dl.tistory.com">ㅓㅇ</a>
+                    DESIGN BY <a target="_blank" href="https://d-dl.tistory.com">D-DL</a>
                 </footer>
             </section>
         </div>
