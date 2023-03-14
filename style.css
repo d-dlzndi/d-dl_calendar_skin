@@ -61,7 +61,6 @@
     box-sizing: border-box;
     animation-timing-function: ease-in-out;
     animation-fill-mode: forwards;
-    max-width: 100%;
 }
 
 body {
